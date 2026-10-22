@@ -1,4 +1,4 @@
-# SEONEX v0.1
+# SEONEX v0.3
 
 **SEONEX — SEO Neural Explainability and Conflict Explorer** is an explainable prototype for identifying page pairs that may deserve a keyword-cannibalization review. It crawls an authorised website, extracts page content, calculates TF-IDF keyword similarity and Sentence Transformer semantic similarity, then displays the evidence in a Catppuccin-inspired Streamlit dashboard.
 
@@ -11,7 +11,11 @@
 - Real title, description, H1/H2, visible-text, word-count, canonical, and internal-link extraction
 - TF-IDF cosine similarity with shared weighted terms
 - `all-MiniLM-L6-v2` semantic similarity with in-memory embedding cache and clear failure reporting
-- Transparent 50/50 keyword + semantic diagnostic score (keyword-only only when semantic analysis explicitly fails)
+- Explainable rule-based intent classification, manual intent corrections, and intent-relationship evidence
+- Configurable-style six-signal diagnostic calculation: keyword, semantic, intent, title, heading, and content overlap
+- KEEP, DIFFERENTIATE, or CONSOLIDATE suggestions requiring reviewer approval; SEONEX never edits a target site
+- Local SQLite persistence for review decisions, labels, and crawl-analysis snapshots
+- Actual before/after pair matching and label-based binary Precision/Recall/F1 when human labels exist
 - Interactive overview scatter plot, page inventory, downloadable CSV, crawl errors, ranked pair explorer, and plain-English explanations
 
 ## Course project status
@@ -88,7 +92,11 @@ data/crawls/           generated CSV snapshots (gitignored)
 
 - Semantic embeddings require a compatible Sentence Transformers installation and initial model download.
 - The crawler is deliberately small and sequential; it suits authorised prototypes, not large-scale crawling.
-- v0.1 does not classify search intent, make recommendations, edit websites, access Search Console, or produce evaluation metrics.
+- SEONEX does not edit websites, access Search Console, or produce meaningful performance metrics until real reviewer labels are supplied.
+
+## v0.2 and v0.3 boundaries
+
+v0.2 implements transparent intent analysis and recommendation review. v0.3 adds local scan snapshots, before/after comparison, labels, and basic binary evaluation. The semantic score is excluded and clearly labelled when the Sentence Transformer cannot load; it is not replaced by a fabricated value. Model metrics remain pending until a reviewer supplies real labels.
 
 ## Recommended v0.2
 

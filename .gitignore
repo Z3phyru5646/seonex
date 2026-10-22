@@ -5,6 +5,7 @@ __pycache__/
 venv/
 data/crawls/
 data/embeddings/
+data/*.db
 *.py[cod]
 .env
 
